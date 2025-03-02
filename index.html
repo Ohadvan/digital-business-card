@@ -44,79 +44,221 @@
             margin: 0 auto;
             padding: 0;
             overflow: hidden;
+            position: relative;
         }
 
-        /* חלק עליון */
-        .header {
+        /* עטיפה לכל חלק העליון כולל אזור הכפתורים */
+        .top-wrapper {
             position: relative;
-            background-image: url('/api/placeholder/800/500');
+            overflow: hidden;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        /* רקע המשכי עם תמונה ואפקט דעיכה */
+        .extended-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/main-image.webp');
             background-size: cover;
-            background-position: center;
-            min-height: 300px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: center;
-            padding: 1.5rem;
-            position: relative;
+            background-position: center top;
+            z-index: -1;
         }
 
-        .header::before {
+        /* אפקט דעיכה הדרגתית מלמעלה למטה */
+        .extended-background::after {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: linear-gradient(to bottom, 
+                rgba(0, 0, 0, 0.3) 0%,  /* 70% בהירות בראש */
+                rgba(0, 0, 0, 0.8) 50%, /* מתכהה באמצע */
+                rgba(0, 0, 0, 0.95) 100% /* כמעט שחור לקראת הסוף */
+            );
         }
 
-        .header-content {
+        /* חלק עליון - החלק הכפול - מחולק לשניים עם תמונות נפרדות */
+        .header {
             position: relative;
-            z-index: 2;
-            width: 100%;
-            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: visible;
+            height: 350px; /* גובה קבוע לכל החלק העליון */
+            margin-bottom: 120px;
         }
 
+        /* החלק העליון של ההדר */
+        .header-top {
+            width: 100%;
+            height: 50%;
+            background-image: url('images/background.webp');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        /* החלק התחתון של ההדר */
+        .header-bottom {
+            width: 100%;
+            height: 50%;
+            background-image: url('images/main-image.webp'); /* תמונה שנייה */
+            background-size: cover;
+            background-position: center top;
+            position: relative;
+        }
+
+        /* אפקט דעיכה הדרגתית של התמונה התחתונה */
+        .header-bottom::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                rgba(0, 0, 0, 0.3) 0%, /* 70% בהירות בראש */
+                rgba(0, 0, 0, 0.9) 100% /* 10% בהירות בתחתית */
+            );
+        }
+
+        /* קו מפריד בין שני החלקים */
+        .divider-line {
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, rgba(255, 140, 0, 0), rgba(255, 140, 0, 1), rgba(255, 140, 0, 0));
+            position: absolute;
+            top: 50%;
+            left: 0;
+            z-index: 9;
+            box-shadow: 0 0 8px rgba(255, 140, 0, 0.7);
+        }
+
+        /* שכבת הצללה עבור רק החלק העליון */
+        .header-top::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        /* תוכן ההדר - שם וכותרת משנה */
+        /* הקטנת הערך השלילי כדי להביא את הטקסט קרוב יותר ללוגו */
+        .header-content {
+            position: absolute;
+            z-index: 8;
+            width: 100%;
+            bottom: -20px;
+            text-align: center;
+            padding: 0 20px;
+}
+
+        /* שינויים ללוגו כדי למקם אותו בדיוק באמצע */
         .logo {
-            width: 300px;            /* הוגדל מ-200px */
-            height: 300px;           /* הוגדל מ-200px */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
-            margin: 0 auto 1rem;
-            border: 3px solid var(--primary-color);
+            border: 4px solid var(--primary-color);
             background-color: var(--background-darker);
             overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
+            z-index: 10;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
+            animation: pulseEffect 1.5s ease-in-out infinite alternate;
+        }
+
+        /* אנימציה חדשה - אפקט פעימה עדין */
+        @keyframes pulseEffect {
+            from {
+                box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+                transform: translate(-50%, -50%) scale(1);
+            }
+            to {
+                box-shadow: 0 4px 25px rgba(255, 140, 0, 0.7);
+                transform: translate(-50%, -50%) scale(1.03);
+            }
+        }
+
+        /* ביטול האנימציה הישנה שלא מתאימה לעיצוב החדש */
+        @keyframes dropIn {
+            0% {
+                transform: translate(-50%, -200px);
+                opacity: 0;
+            }
+            70% {
+                transform: translate(-50%, 10px);
+            }
+            100% {
+                transform: translate(-50%, 0);
+                opacity: 1;
+            }
         }
 
         .logo img {
-            width: 90%;
-            height: 90%;
+            width: 110%;
+            height: 110%;
             object-fit: cover;
+            object-position: center center;
         }
 
         .header h1 {
-            font-size: 2rem;
-            font-weight: 700;
             margin-bottom: 0.3rem;
+            font-size: 2.2rem;
+            font-weight: 700;
             color: var(--text-color);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .header p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 400;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
             color: var(--primary-color);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* התאמות למובייל */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .social-icons {
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* אייקונים של רשתות חברתיות */
-        .social-icons {
+        /* שינוי מחלקת social-icons לשימוש במיקום מוחלט */
+            .social-icons {
             display: flex;
             justify-content: center;
             gap: 1rem;
-            margin: 1.5rem 0;
+            position: absolute; /* שינוי מ-relative ל-absolute */
+            bottom: -100px; /* מיקום מתחתית האלמנט המכיל */
+            left: 0;
+            right: 0;
+            z-index: 10; /* וודא שהאייקונים מעל אלמנטים אחרים */
             flex-wrap: wrap;
         }
 
@@ -160,22 +302,75 @@
             background-color: var(--primary-color);
             color: white;
             border: none;
+            border-radius: 30px;
             padding: 0.8rem 2rem;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 500;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin: 1rem 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin: 1rem 0;            
             transition: all 0.3s ease;
             text-decoration: none;
+            position: relative;
+            z-index: 5;
+            margin-bottom: 2rem;
+            display: block;
+            margin: 0 auto;
+            margin-top: 130px; /* שנה ערך זה כדי להזיז את הכפתור נמוך יותר */
+            max-width: 200px;
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 140, 0, 0.3);
+        /* הוספת רספונסיביות */
+        @media screen and (max-width: 768px) {
+            .logo {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .header {
+                height: 300px;
+                margin-bottom: 110px;
+            }
+            
+            .header-content {
+                bottom: -110px;
+            }
+            
+            .social-icons {
+                margin-top: 90px;
+            }
+            
+            .top-wrapper {
+                padding-bottom: 1.5rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .logo {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .header {
+                height: 260px;
+                margin-bottom: 100px;
+            }
+            
+            .header-content {
+                bottom: -100px;
+            }
+            
+            .header h1 {
+                font-size: 1.7rem;
+            }
+            
+            .social-icons {
+                margin-top: 80px;
+            }
+            
+            .top-wrapper {
+                padding-bottom: 1rem;
+            }
         }
 
         /* מקטעים */
@@ -370,62 +565,71 @@
         <button class="language-switch" onclick="toggleLanguage()">English</button>
 
         <!-- חלק עליון -->
-        <div class="header">
-            <div class="header-content">
+        <div class="top-wrapper">
+            <div class="extended-background"></div>
+            <div class="header">
+                <div class="header-top"></div>
+                <div class="header-bottom"></div>
+                <div class="divider-line"></div>
                 <div class="logo">
                     <!-- כאן תכניס את הלוגו שלך -->
                     <img src="images/logo.jpg" alt="לוגו להקת מעיינות">
                 </div>
-                <h1>אהד ון-לואן</h1>
-                <p>קלידן וזמר | להקת מעיינות</p>
+                <div class="header-content">
+                    <h1>אהד ון-לואן</h1>
+                    <p>קלידן וזמר | להקת מעיינות</p>
+
+                </div>
+                <!-- אייקונים של רשתות חברתיות -->
+                <div class="social-icons">
+                    <a href="tel:0532820858" class="social-icon">
+                        <div class="icon-circle">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <span>חיוג</span>
+                    </a>
+                    <a href="https://wa.me/972532820858" class="social-icon">
+                        <div class="icon-circle">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <span>וואטסאפ</span>
+                    </a>
+                    <a href="https://wa.me/972532820858?text=היי%20אהד,%20אשמח%20לראות%20את%20הסטטוס%20שלך" class="social-icon">
+                        <div class="icon-circle">
+                            <i class="fas fa-comment"></i>
+                        </div>
+                        <span>סטטוס</span>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <div class="icon-circle">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <span>יוטיוב</span>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <div class="icon-circle">
+                            <i class="fab fa-facebook"></i>
+                        </div>
+                        <span>פייסבוק</span>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <div class="icon-circle">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <span>אינסטגרם</span>
+                    </a>
+                </div>
             </div>
-        </div>
 
-        <!-- אייקונים של רשתות חברתיות -->
-        <div class="social-icons">
-            <a href="tel:0532820858" class="social-icon">
-                <div class="icon-circle">
-                    <i class="fas fa-phone"></i>
-                </div>
-                <span>חיוג</span>
-            </a>
-            <a href="https://wa.me/972532820858" class="social-icon">
-                <div class="icon-circle">
-                    <i class="fab fa-whatsapp"></i>
-                </div>
-                <span>וואטסאפ</span>
-            </a>
-            <a href="https://wa.me/972532820858?text=היי%20אהד,%20אשמח%20לראות%20את%20הסטטוס%20שלך" class="social-icon">
-                <div class="icon-circle">
-                    <i class="fas fa-comment"></i>
-                </div>
-                <span>סטטוס</span>
-            </a>
-            <a href="#" class="social-icon">
-                <div class="icon-circle">
-                    <i class="fab fa-youtube"></i>
-                </div>
-                <span>יוטיוב</span>
-            </a>
-            <a href="#" class="social-icon">
-                <div class="icon-circle">
-                    <i class="fab fa-facebook"></i>
-                </div>
-                <span>פייסבוק</span>
-            </a>
-            <a href="#" class="social-icon">
-                <div class="icon-circle">
-                    <i class="fab fa-instagram"></i>
-                </div>
-                <span>אינסטגרם</span>
-            </a>
-        </div>
-
-        <!-- כפתור התקשרות -->
+            <!-- כפתור התקשרות -->
         <a href="https://wa.me/972532820858" class="cta-button">
             <i class="fab fa-whatsapp"></i>
             לתיאום אירוע
         </a>
+            
+        </div>
+
+        
 
         <!-- קצת עלי -->
         <div class="section">
@@ -472,7 +676,7 @@
 
         <!-- פוטר -->
         <div class="footer">
-            <p>© להקת מעיינות - אהד ון-לואן</p>
+            <p>להקת מעיינות - אהד ון-לואן</p>
             <p>טלפון: 0532820858</p>
             <p>"ליווי מוזיקלי אנרגטי יהודי לשמחה שלכם"</p>
         </div>
@@ -484,14 +688,20 @@
         <button class="language-switch" onclick="toggleLanguage()">עברית</button>
 
         <!-- חלק עליון -->
-        <div class="header">
-            <div class="header-content">
+        <div class="top-wrapper">
+            <div class="extended-background"></div>
+            <div class="header">
+                <div class="header-top"></div>
+                <div class="header-bottom"></div>
+                <div class="divider-line"></div>
                 <div class="logo">
                     <!-- כאן תכניס את הלוגו שלך -->
                     <img src="images/logo.webp" alt="Mayanot Band Logo">
                 </div>
-                <h1>Ohad Van-Luan</h1>
-                <p>Keyboard Player & Singer | Mayanot Band</p>
+                <div class="header-content">
+                    <h1>Ohad Van-Luan</h1>
+                    <p>Keyboard Player & Singer | Mayanot Band</p>
+                </div>
             </div>
         </div>
 
@@ -587,7 +797,7 @@
 
         <!-- פוטר באנגלית -->
         <div class="footer">
-            <p>© Mayanot Band - Ohad Van-Luan</p>
+            <p>Mayanot Band - Ohad Van-Luan</p>
             <p>Phone: +972-53-282-0858</p>
             <p>"Energetic Jewish musical accompaniment for your celebration"</p>
         </div>
