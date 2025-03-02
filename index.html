@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אהד ון-לואן | להקת מעיינות</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap');
+        
+        :root {
+            --gold: #d4af37;
+            --dark-gold: #aa8c2c;
+            --black: #000000;
+            --white: #ffffff;
+            --gray: #f5f5f5;
+            --dark-gray: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Heebo', sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+        }
+        
+        /* כותרת ראשית */
+        .header {
+            position: relative;
+            text-align: center;
+            padding-top: 20px;
+            background-color: var(--black);
+        }
+        
+        .lang-flags {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 10px 0;
+            background-color: var(--black);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .lang-flag {
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .lang-flag:hover {
+            transform: scale(1.2);
+        }
+        
+        .main-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+        }
+        
+        .logo-container {
+            position: relative;
+            margin-top: -50px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .circular-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            background-color: var(--black);
+            padding: 5px;
+            z-index: 10;
+            position: relative;
+        }
+        
+        .brand-name {
+            font-size: 2.5rem;
+            color: var(--white);
+            margin: 15px 0;
+            font-weight: 700;
+        }
+        
+        /* אייקונים למטה */
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--white);
+        }
+        
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--black);
+            border: 2px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .icon-circle i {
+            font-size: 24px;
+            color: var(--gold);
+        }
+        
+        .icon-text {
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .icon-item:hover .icon-circle {
+            background-color: var(--gold);
+        }
+        
+        .icon-item:hover .icon-circle i {
+            color: var(--black);
+        }
+        
+        /* כפתור שמירת קשר */
+        .save-contact {
+            display: block;
+            background: linear-gradient(to right, var(--gold), var(--dark-gold));
+            color: var(--black);
+            text-align: center;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            margin: 30px auto;
+            max-width: 80%;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .save-contact:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* תוכן ראשי */
+        .main-content {
+            padding: 20px;
+            background-color: var(--black);
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: var(--white);
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--gold);
+        }
+        
+        .gold-bg {
+            background-color: var(--gold);
+            padding: 30px 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .gold-bg:before, .gold-bg:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            background-color: var(--gold);
+            left: 0;
+        }
+        
+        .gold-bg:before {
+            top: -10px;
+            border-top-left-radius: 50%;
+            border-top-right-radius: 50%;
+        }
+        
+        .gold-bg:after {
+            bottom: -10px;
+            border-bottom-left-radius: 50%;
+            border-bottom-right-radius: 50%;
+        }
+        
+        .about-text {
+            color: var(--black);
+            font-size: 1.1rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* גלריית תמונות */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .gallery-item {
+            height: 150px;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* סרטונים */
+        .video-container {
+            margin: 20px 0;
+        }
+        
+        .youtube-embed {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            border-radius: 10px;
+            border: 2px solid var(--gold);
+        }
+        
+        .youtube-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* רגל הדף */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .watermark {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+            margin-top: 20px;
+        }
+        
+        /* התאמות למובייל */
+        @media (max-width: 768px) {
+            .icon-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 10px;
+            }
+            
+            .icon-circle {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .icon-circle i {
+                font-size: 20px;
+            }
+            
+            .icon-text {
+                font-size: 12px;
+            }
+            
+            .brand-name {
+                font-size: 2rem;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+        
+        /* עיצובים ספציפיים לאנגלית */
+        html[lang="en"] {
+            direction: ltr;
+        }
+    </style>
+</head>
+<body>
+    <!-- שפות -->
+    <div class="lang-flags">
+        <span class="lang-flag" onclick="changeLanguage('🇮🇱')">🇮🇱</span>
+        <span class="lang-flag" onclick="changeLanguage('🇺🇸')">🇺🇸</span>
+        <span class="lang-flag" onclick="changeLanguage('🇫🇷')">🇫🇷</span>
+    </div>
+    
+    <!-- כותרת ראשית -->
+    <header class="header">
+        <img src="https://files.oaiusercontent.com/file-S9BbiVYQpbiKaVEohJBvdm?se=2025-03-02T11%3A01%3A39Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D8ccab56c-bdb2-4aa3-95f7-2665e2e90a25.webp&sig=LzceWosxrftQCADkFl8F1/mD0PXPNTvgat0rUfxpI0E%3D" alt="להקת מעיינות" class="main-image">
+        <div class="logo-container">
+            <img src="https://files.oaiusercontent.com/file-1wU4dZw8VvgiJ4m6H1Q9J8?se=2025-03-02T11%3A02%3A44Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3De1169a9d-af27-4998-9b6a-0149922146f6.webp&sig=1PWDz7NrcujQF4%2Bb%2BrxVAjFktGGHAlHJ7Aa7tT4AxyA%3D" alt="לוגו להקת מעיינות" class="circular-logo">
+        </div>
+        <h1 class="brand-name">
+            <span class="he">אהד ון-לואן</span>
+            <span class="en">Ohad Van-Loon</span>
+        </h1>
+    </header>
+    
+    <!-- אייקונים -->
+    <div class="icon-grid">
+        <a href="#contact" class="icon-item">
+            <div class="icon-circle">
+                <i class="fas fa-address-book"></i>
+            </div>
+            <div class="icon-text">
+                <span class="he">צור קשר</span>
+                <span class="en">Contact</span>
+            </div>
+        </a>
+        <a href="#recommendations" class="icon-item">
+            <div class="icon-circle">
+                <i class="fas fa-heart"></i>
+            </div>
+            <div class="icon-text">
+                <span class="he">המלצות</span>
+                <span class="en">Reviews</span>
+            </div>
+        </a>
+        <a href="tel:0532820858" class="icon-item">
+            <div class="icon-circle">
+                <i class="fas fa-phone"></i>
+            </div>
+            <div class="icon-text">
+                <span class="he">טלפון</span>
+                <span class="en">Phone</span>
+            </div>
+        </a>
+        <a href="https://wa.me/972532820858" class="icon-item">
+            <div class="icon-circle">
+                <i class="fab fa-whatsapp"></i>
+            </div>
+            <div class="icon-text">
+                <span class="he">וואטסאפ</span>
+                <span class="en">WhatsApp</span>
+            </div>
+        </a>
+        <a href="#" class="icon-item">
+            <div class="icon-circle">
+                <i class="fab fa-youtube"></i>
+            </div>
+            <div class="icon-text">
+                <span class="he">יוטיוב</span>
+                <span class="en">YouTube</span>
+            </div>
+        </a>
+        <a href="#" class="icon-item">
+            <div class="icon-circle">
+                <i class="fab fa-tiktok"></i>
+            </div>
+            <div class="icon-text">
+                <span class="he">טיקטוק</span>
+                <span class="en">TikTok</span>
+            </div>
+        </a>
+        <a href="#" class="icon-item">
+            <div class="icon-circle">
+                <i class="fab fa-instagram"></i>
+            </div>
+            <div class="icon-text">
+                <span class="he">אינסטגרם</span>
+                <span class="en">Instagram</span>
+            </div>
+        </a>
+        <a href="#" class="icon-item">
+            <div class="icon-circle">
+                <i class="fab fa-facebook-f"></i>
+            </div>
+            <div class="icon-text">
+                <span class="he">פייסבוק</span>
+                <span class="en">Facebook</span>
+            </div>
+        </a>
+    </div>
+    
+    <!-- כפתור שמירת קשר -->
+    <a href="#" onclick="saveContact()" class="save-contact">
+        <i class="fas fa-user-plus"></i>
+        <span class="he">שמור אותי באנשי הקשר</span>
+        <span class="en">Save to Contacts</span>
+    </a>
+    
+    <!-- תוכן ראשי -->
+    <div class="main-content">
+        <!-- אודות -->
+        <div class="gold-bg">
+            <p class="about-text">
+                <span class="he">
+                    להקת מעיינות היא להקה יהודית ייחודית שמביאה שמחה, רגש ואנרגיה לכל אירוע. עם שילוב מרהיב של תופים, שופרות וכלי נגינה כמו סקסופון, קלרינט, כינור וגיטרה, הלהקה מתמחה ביצירת אווירה יהודית ייחודית ומלאת חיים.
+                </span>
+                <span class="en">
+                    Mayanot Band is a unique Jewish band that brings joy, emotion and energy to every event. With an impressive combination of drums, shofars and instruments such as saxophone, clarinet, violin and guitar, the band specializes in creating a unique and vibrant Jewish atmosphere.
+                </span>
+            </p>
+        </div>
+        
+        <!-- שירותים -->
+        <h2 class="section-title" id="services">
+            <span class="he">השירותים שלנו</span>
+            <span class="en">Our Services</span>
+        </h2>
+        <div class="gold-bg">
+            <p class="about-text">
+                <span class="he">
+                    אנו מלווים אירועים מרגשים כמו חתונות, בר/בת מצוות, הכנסת ספר תורה, חנוכת בית ואירועים קהילתיים, הן בארץ והן בחו"ל. המוזיקה שלנו שואבת השראה ממסורת הכליזמר, לצד נגיעות מודרניות שגורמות לכל קהל להתחבר ולשמוח יחד איתנו.
+                </span>
+                <span class="en">
+                    We accompany moving events such as weddings, bar/bat mitzvahs, Torah scroll inaugurations, house dedications and community events, both in Israel and abroad. Our music draws inspiration from the klezmer tradition, alongside modern touches that cause any audience to connect and rejoice together with us.
+                </span>
+            </p>
+        </div>
+        
+        <!-- גלריה -->
+        <h2 class="section-title" id="gallery">
+            <span class="he">גלריית תמונות</span>
+            <span class="en">Photo Gallery</span>
+        </h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://files.oaiusercontent.com/file-JTMoRAv8uK8qAkJevh7wKe?se=2025-03-02T11%3A04%3A14Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D399deb1c-ed53-4cea-ad1c-eef1d5cb8fe9.webp&sig=GsCY4CknO4YPMD7VaCM/hS2E5UU22k1TnwKDrFnJhu4%3D" alt="אירוע 1">
+            </div>
+            <div class="gallery-item">
+                <img src="https://files.oaiusercontent.com/file-42SHDvrkZgiE5ZpgRvp5uq?se=2025-03-02T11%3A05%3A11Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D4be7b436-6484-4e86-8004-9c90a6d5ce82.webp&sig=bsgoQ0o1BxEaBtLk65Iu4N0I8jLP3cultzjYYiQZ1L8%3D" alt="אירוע 2">
+            </div>
+            <div class="gallery-item">
+                <img src="https://files.oaiusercontent.com/file-EMD633QjH8pNVQ9BTDqG7F?se=2025-03-02T11%3A05%3A26Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D3ab7528b-6b5c-48bb-a1e9-039669d9aa3d.webp&sig=YQ96K5FQ3iF6yf664FCQUaWogiNWnt6wErzHLr/G0sU%3D" alt="אירוע 3">
+            </div>
+            <div class="gallery-item">
+                <img src="https://files.oaiusercontent.com/file-UzwG6dh8ztaSAC8krQAfjD?se=2025-03-02T11%3A05%3A42Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D8fc4c1b0-9345-4f1c-aa5e-58f6d57936cb.webp&sig=WqvWtlGg99TF8mD8YHowD7Mo1rUHqvV5UCD5KJ3X1BU%3D" alt="אירוע 4">
+            </div>
+            <div class="gallery-item">
+                <img src="https://files.oaiusercontent.com/file-SQsYLoSwLo5fmKE7Dw95VN?se=2025-03-02T11%3A05%3A58Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D0a33e3f9-859a-49bb-bd49-fb0c24c6c3ea.webp&sig=tZJXr6OcIyC68JvsFwwq1ODe2Ze5v6ts4t1AbPecrfw%3D" alt="אירוע 5">
+            </div>
+            <div class="gallery-item">
+                <img src="https://files.oaiusercontent.com/file-CWUEJMxBJfkNSxsb4A75A1?se=2025-03-02T11%3A06%3A16Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Dc10cea83-d719-463d-9f2b-850b4847a808.webp&sig=z7g2ZQhG79yOq9q2ERQhjXdBPTuYFSVWgvuiSKmygjY%3D" alt="אירוע 6">
+            </div>
+        </div>
+        
+        <!-- סרטונים -->
+        <h2 class="section-title" id="videos">
+            <span class="he">סרטונים</span>
+            <span class="en">Videos</span>
+        </h2>
+        <div class="video-container">
+            <div class="youtube-embed">
+                <iframe src="about:blank" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+        
+        <!-- המלצות -->
+        <h2 class="section-title" id="recommendations">
+            <span class="he">המלצות</span>
+            <span class="en">Testimonials</span>
+        </h2>
+        <div class="gold-bg">
+            <p class="about-text">
+                <span class="he">
+                    "אהד הפך את החתונה שלנו לחוויה בלתי נשכחת. הרגש, האנרגיה והשמחה שהוא הביא לאירוע היו מעבר לכל ציפיותינו. כל האורחים לא הפסיקו לרקוד!"
+                </span>
+                <span class="en">
+                    "Ohad turned our wedding into an unforgettable experience. The emotion, energy and joy he brought to the event exceeded all our expectations. All the guests couldn't stop dancing!"
+                </span>
+            </p>
+        </div>
+        
+        <!-- צור קשר -->
+        <h2 class="section-title" id="contact">
+            <span class="he">צור קשר</span>
+            <span class="en">Contact Us</span>
+        </h2>
+        <div class="gold-bg">
+            <p class="about-text">
+                <span class="he">
+                    הזמינו אותנו לשמחות שלכם! טלפון: 0532820858
+                </span>
+                <span class="en">
+                    Book us for your celebrations! Phone: +972-53-282-0858
+                </span>
+            </p>
+        </div>
+    </div>
+    
+    <!-- רגל דף -->
+    <footer>
+        <p>
+            <span class="he">&copy; 2025 אהד ון-לואן | להקת מעיינות</span>
+            <span class="en">&copy; 2025 Ohad Van-Loon | Mayanot Band</span>
+        </p>
+        <p class="watermark">
+            <span class="he">רגעים של שמחה במלוא העוצמה</span>
+            <span class="en">Moments of joy at full power</span>
+        </p>
+    </footer>
+    
+    <script>
+        // פונקציית החלפת שפה
+        function changeLanguage(lang) {
+            const html = document.documentElement;
+            
+            // מסתיר את כל האלמנטים שאינם בשפה הנוכחית
+            const heElements = document.querySelectorAll('.he');
+            const enElements = document.querySelectorAll('.en');
+            
+            if (lang === '🇮🇱') {
+                html.lang = 'he';
+                heElements.forEach(el => el.style.display = 'inline-block');
+                enElements.forEach(el => el.style.display = 'none');
+                html.dir = 'rtl';
+            } else if (lang === '🇺🇸') {
+                html.lang = 'en';
+                heElements.forEach(el => el.style.display = 'none');
+                enElements.forEach(el => el.style.display = 'inline-block');
+                html.dir = 'ltr';
+            } else if (lang === '🇫🇷') {
+                html.lang = 'fr';
+                // For now, use English text but with French language setting
+                // You can add French translations later
+                heElements.forEach(el => el.style.display = 'none');
+                enElements.forEach(el => el.style.display = 'inline-block');
+                html.dir = 'ltr';
+            }
+        }
+        
+        // פונקציית שמירת איש קשר
+        function saveContact() {
+            // יצירת vCard
+            const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:אהד ון-לואן - להקת מעיינות
+TEL;TYPE=CELL:0532820858
+END:VCARD`;
+            
+            // יצירת קישור להורדה
+            const blob = new Blob([vcard], { type: 'text/vcard' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'אהד_ון-לואן.vcf';
+            a.click();
+            
+            URL.revokeObjectURL(url);
+        }
+        
+        // מריץ את פונקציית החלפת השפה כשהדף נטען
+        document.addEventListener('DOMContentLoaded', function() {
+            changeLanguage('🇮🇱');
+        });
+    </script>
+</body>
+</html>
