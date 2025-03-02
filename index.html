@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>אהד ואן-לואן | להקת מעיינות</title>
+    <title>אהד ון-לואן | להקת מעיינות</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap');
         
         :root {
-            --gold: #d4af37;
-            --dark-gold: #aa8c2c;
-            --black: #000000;
+            --turquoise: #43e8d8;
+            --purple: #c064c9;
+            --light-turquoise: #a3f9f1;
+            --light-purple: #e9b6ef;
             --white: #ffffff;
-            --gray: #f5f5f5;
-            --dark-gray: #333333;
+            --black: #000000;
         }
         
         * {
@@ -25,17 +25,36 @@
         
         body {
             font-family: 'Heebo', sans-serif;
-            background-color: var(--black);
-            color: var(--white);
+            background: linear-gradient(135deg, var(--light-turquoise) 0%, var(--white) 50%, var(--light-purple) 100%);
+            color: var(--black);
             line-height: 1.6;
+            min-height: 100vh;
         }
         
-        /* כותרת ראשית */
+        /* Header with logo-inspired horizon line */
         .header {
             position: relative;
             text-align: center;
             padding-top: 20px;
-            background-color: var(--black);
+            background-color: transparent;
+            overflow: hidden;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent 0%, var(--turquoise) 10%, 
+                transparent 20%, var(--purple) 30%, 
+                transparent 40%, var(--turquoise) 50%, 
+                transparent 60%, var(--purple) 70%, 
+                transparent 80%, var(--turquoise) 90%, 
+                transparent 100%);
+            z-index: 5;
         }
         
         .lang-flags {
@@ -43,8 +62,8 @@
             justify-content: center;
             gap: 15px;
             padding: 10px 0;
-            background-color: var(--black);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
         }
         
         .lang-flag {
@@ -61,6 +80,7 @@
             width: 100%;
             max-height: 400px;
             object-fit: cover;
+            border-bottom: 4px solid var(--turquoise);
         }
         
         .logo-container {
@@ -74,21 +94,26 @@
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            border: 2px solid var(--gold);
-            background-color: var(--black);
+            border: 3px solid var(--purple);
+            background-color: var(--white);
             padding: 5px;
             z-index: 10;
             position: relative;
+            box-shadow: 0 0 20px rgba(192, 100, 201, 0.5);
         }
         
         .brand-name {
             font-size: 2.5rem;
-            color: var(--white);
+            background: linear-gradient(to right, var(--turquoise), var(--purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             margin: 15px 0;
             font-weight: 700;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         
-        /* אייקונים למטה */
+        /* Icons grid with new colors */
         .icon-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -103,45 +128,43 @@
             flex-direction: column;
             align-items: center;
             text-decoration: none;
-            color: var(--white);
+            color: var(--black);
         }
         
         .icon-circle {
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background-color: var(--black);
-            border: 2px solid var(--gold);
+            background: linear-gradient(135deg, var(--turquoise) 0%, var(--purple) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 8px;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         
         .icon-circle i {
             font-size: 24px;
-            color: var(--gold);
+            color: var(--white);
         }
         
         .icon-text {
             font-size: 14px;
             text-align: center;
+            font-weight: 500;
         }
         
         .icon-item:hover .icon-circle {
-            background-color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
         
-        .icon-item:hover .icon-circle i {
-            color: var(--black);
-        }
-        
-        /* כפתור שמירת קשר */
+        /* Save contact button with gradient */
         .save-contact {
             display: block;
-            background: linear-gradient(to right, var(--gold), var(--dark-gold));
-            color: var(--black);
+            background: linear-gradient(to right, var(--turquoise), var(--purple));
+            color: var(--white);
             text-align: center;
             padding: 12px 20px;
             border-radius: 50px;
@@ -149,23 +172,27 @@
             margin: 30px auto;
             max-width: 80%;
             text-decoration: none;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
         .save-contact:hover {
             transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
         }
         
-        /* תוכן ראשי */
+        /* Main content sections with glass morphism */
         .main-content {
             padding: 20px;
-            background-color: var(--black);
+            background-color: transparent;
         }
         
         .section-title {
             font-size: 2rem;
-            color: var(--white);
+            background: linear-gradient(to right, var(--turquoise), var(--purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             text-align: center;
             margin-bottom: 20px;
             position: relative;
@@ -180,35 +207,58 @@
             transform: translateX(-50%);
             width: 100px;
             height: 3px;
-            background-color: var(--gold);
+            background: linear-gradient(to right, var(--turquoise), var(--purple));
         }
         
-        .gold-bg {
-            background-color: var(--gold);
+        .gradient-bg {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
             padding: 30px 20px;
             margin: 20px 0;
             position: relative;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
-        .gold-bg:before, .gold-bg:after {
+        .gradient-bg::before {
             content: '';
             position: absolute;
-            width: 100%;
-            height: 20px;
-            background-color: var(--gold);
+            top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(67, 232, 216, 0.2) 0%, 
+                rgba(255, 255, 255, 0.05) 50%, 
+                rgba(192, 100, 201, 0.2) 100%);
+            border-radius: 15px;
+            z-index: -1;
         }
         
-        .gold-bg:before {
-            top: -10px;
-            border-top-left-radius: 50%;
-            border-top-right-radius: 50%;
+        /* Horizontal line inspired by logo */
+        .horizon-line {
+            height: 4px;
+            width: 100%;
+            background: linear-gradient(90deg, 
+                var(--turquoise) 0%, var(--white) 50%, var(--purple) 100%);
+            margin: 30px 0;
+            position: relative;
         }
         
-        .gold-bg:after {
-            bottom: -10px;
-            border-bottom-left-radius: 50%;
-            border-bottom-right-radius: 50%;
+        .horizon-line::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: repeating-linear-gradient(90deg, 
+                transparent, transparent 20px, 
+                var(--turquoise) 20px, var(--turquoise) 40px,
+                transparent 40px, transparent 60px,
+                var(--purple) 60px, var(--purple) 80px);
+            opacity: 0.4;
         }
         
         .about-text {
@@ -219,34 +269,42 @@
             margin: 0 auto;
             position: relative;
             z-index: 1;
+            line-height: 1.8;
         }
         
-        /* גלריית תמונות */
+        /* Gallery with new styling */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
+            gap: 15px;
             margin-top: 20px;
         }
         
         .gallery-item {
             height: 150px;
             overflow: hidden;
-            border-radius: 5px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
         }
         
         .gallery-item:hover img {
             transform: scale(1.1);
         }
         
-        /* סרטונים */
+        /* Video container */
         .video-container {
             margin: 20px 0;
         }
@@ -257,8 +315,10 @@
             height: 0;
             overflow: hidden;
             max-width: 100%;
-            border-radius: 10px;
-            border: 2px solid var(--gold);
+            border-radius: 15px;
+            border: 3px solid transparent;
+            background: linear-gradient(135deg, var(--turquoise), var(--purple)) border-box;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
         
         .youtube-embed iframe {
@@ -267,25 +327,33 @@
             left: 0;
             width: 100%;
             height: 100%;
+            border-radius: 12px;
         }
         
-        /* רגל הדף */
+        /* Footer with gradient */
         footer {
-            background-color: var(--black);
-            color: var(--white);
+            background: linear-gradient(135deg, 
+                rgba(67, 232, 216, 0.2) 0%, 
+                rgba(192, 100, 201, 0.2) 100%);
+            color: var(--black);
             text-align: center;
             padding: 30px 20px;
             margin-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(5px);
         }
         
         .watermark {
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+            background: linear-gradient(to right, var(--turquoise), var(--purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             margin-top: 20px;
+            font-weight: 500;
         }
         
-        /* התאמות למובייל */
+        /* Mobile responsive adjustments */
         @media (max-width: 768px) {
             .icon-grid {
                 grid-template-columns: repeat(4, 1fr);
@@ -314,25 +382,25 @@
             }
         }
         
-        /* עיצובים ספציפיים לאנגלית */
+        /* English language adjustments */
         html[lang="en"] {
             direction: ltr;
         }
     </style>
 </head>
 <body>
-    <!-- שפות -->
+    <!-- Language selection -->
     <div class="lang-flags">
         <span class="lang-flag" onclick="changeLanguage('🇮🇱')">🇮🇱</span>
         <span class="lang-flag" onclick="changeLanguage('🇺🇸')">🇺🇸</span>
         <span class="lang-flag" onclick="changeLanguage('🇫🇷')">🇫🇷</span>
     </div>
     
-    <!-- כותרת ראשית -->
+    <!-- Header with logo-inspired design elements -->
     <header class="header">
-        <img src="images/main-image.webp" alt="להקת מעיינות" class="main-image">
+        <img src="/api/placeholder/1200/400" alt="להקת מעיינות" class="main-image">
         <div class="logo-container">
-            <img src="images/logo.webp" alt="לוגו להקת מעיינות" class="circular-logo">
+            <img src="/api/placeholder/100/100" alt="לוגו להקת מעיינות" class="circular-logo">
         </div>
         <h1 class="brand-name">
             <span class="he">אהד ון-לואן</span>
@@ -340,7 +408,10 @@
         </h1>
     </header>
     
-    <!-- אייקונים -->
+    <!-- Horizon line inspired by logo -->
+    <div class="horizon-line"></div>
+    
+    <!-- Icon grid -->
     <div class="icon-grid">
         <a href="#contact" class="icon-item">
             <div class="icon-circle">
@@ -416,17 +487,17 @@
         </a>
     </div>
     
-    <!-- כפתור שמירת קשר -->
+    <!-- Save contact button -->
     <a href="#" onclick="saveContact()" class="save-contact">
         <i class="fas fa-user-plus"></i>
         <span class="he">שמור אותי באנשי הקשר</span>
         <span class="en">Save to Contacts</span>
     </a>
     
-    <!-- תוכן ראשי -->
+    <!-- Main content with new glass morphism design -->
     <div class="main-content">
-        <!-- אודות -->
-        <div class="gold-bg">
+        <!-- About section -->
+        <div class="gradient-bg">
             <p class="about-text">
                 <span class="he">
                     להקת מעיינות היא להקה יהודית ייחודית שמביאה שמחה, רגש ואנרגיה לכל אירוע. עם שילוב מרהיב של תופים, שופרות וכלי נגינה כמו סקסופון, קלרינט, כינור וגיטרה, הלהקה מתמחה ביצירת אווירה יהודית ייחודית ומלאת חיים.
@@ -437,12 +508,12 @@
             </p>
         </div>
         
-        <!-- שירותים -->
+        <!-- Services section -->
         <h2 class="section-title" id="services">
             <span class="he">השירותים שלנו</span>
             <span class="en">Our Services</span>
         </h2>
-        <div class="gold-bg">
+        <div class="gradient-bg">
             <p class="about-text">
                 <span class="he">
                     אנו מלווים אירועים מרגשים כמו חתונות, בר/בת מצוות, הכנסת ספר תורה, חנוכת בית ואירועים קהילתיים, הן בארץ והן בחו"ל. המוזיקה שלנו שואבת השראה ממסורת הכליזמר, לצד נגיעות מודרניות שגורמות לכל קהל להתחבר ולשמוח יחד איתנו.
@@ -453,33 +524,36 @@
             </p>
         </div>
         
-        <!-- גלריה -->
+        <!-- Horizon line inspired by logo -->
+        <div class="horizon-line"></div>
+        
+        <!-- Gallery section -->
         <h2 class="section-title" id="gallery">
             <span class="he">גלריית תמונות</span>
             <span class="en">Photo Gallery</span>
         </h2>
         <div class="gallery">
             <div class="gallery-item">
-                <img src="images/gallery-1.webp" alt="אירוע 1">
+                <img src="/api/placeholder/300/300" alt="אירוע 1">
             </div>
             <div class="gallery-item">
-                <img src="images/gallery-2.webp" alt="אירוע 2">
+                <img src="/api/placeholder/300/300" alt="אירוע 2">
             </div>
             <div class="gallery-item">
-                <img src="images/gallery-3.webp" alt="אירוע 3">
+                <img src="/api/placeholder/300/300" alt="אירוע 3">
             </div>
             <div class="gallery-item">
-                <img src="images/gallery-4.webp" alt="אירוע 4">
+                <img src="/api/placeholder/300/300" alt="אירוע 4">
             </div>
             <div class="gallery-item">
-                <img src="images/gallery-5.webp" alt="אירוע 5">
+                <img src="/api/placeholder/300/300" alt="אירוע 5">
             </div>
             <div class="gallery-item">
-                <img src="images/gallery-6.webp" alt="אירוע 6">
+                <img src="/api/placeholder/300/300" alt="אירוע 6">
             </div>
         </div>
         
-        <!-- סרטונים -->
+        <!-- Videos section -->
         <h2 class="section-title" id="videos">
             <span class="he">סרטונים</span>
             <span class="en">Videos</span>
@@ -490,12 +564,15 @@
             </div>
         </div>
         
-        <!-- המלצות -->
+        <!-- Horizon line inspired by logo -->
+        <div class="horizon-line"></div>
+        
+        <!-- Testimonials section -->
         <h2 class="section-title" id="recommendations">
             <span class="he">המלצות</span>
             <span class="en">Testimonials</span>
         </h2>
-        <div class="gold-bg">
+        <div class="gradient-bg">
             <p class="about-text">
                 <span class="he">
                     "אהד הפך את החתונה שלנו לחוויה בלתי נשכחת. הרגש, האנרגיה והשמחה שהוא הביא לאירוע היו מעבר לכל ציפיותינו. כל האורחים לא הפסיקו לרקוד!"
@@ -506,12 +583,12 @@
             </p>
         </div>
         
-        <!-- צור קשר -->
+        <!-- Contact section -->
         <h2 class="section-title" id="contact">
             <span class="he">צור קשר</span>
             <span class="en">Contact Us</span>
         </h2>
-        <div class="gold-bg">
+        <div class="gradient-bg">
             <p class="about-text">
                 <span class="he">
                     הזמינו אותנו לשמחות שלכם! טלפון: 0532820858
@@ -523,7 +600,7 @@
         </div>
     </div>
     
-    <!-- רגל דף -->
+    <!-- Footer -->
     <footer>
         <p>
             <span class="he">&copy; 2025 אהד ון-לואן | להקת מעיינות</span>
@@ -536,11 +613,11 @@
     </footer>
     
     <script>
-        // פונקציית החלפת שפה
+        // Language switching function
         function changeLanguage(lang) {
             const html = document.documentElement;
             
-            // מסתיר את כל האלמנטים שאינם בשפה הנוכחית
+            // Hide elements that are not in the current language
             const heElements = document.querySelectorAll('.he');
             const enElements = document.querySelectorAll('.en');
             
@@ -557,23 +634,22 @@
             } else if (lang === '🇫🇷') {
                 html.lang = 'fr';
                 // For now, use English text but with French language setting
-                // You can add French translations later
                 heElements.forEach(el => el.style.display = 'none');
                 enElements.forEach(el => el.style.display = 'inline-block');
                 html.dir = 'ltr';
             }
         }
         
-        // פונקציית שמירת איש קשר
+        // Save contact function
         function saveContact() {
-            // יצירת vCard
+            // Create vCard
             const vcard = `BEGIN:VCARD
 VERSION:3.0
 FN:אהד ון-לואן - להקת מעיינות
 TEL;TYPE=CELL:0532820858
 END:VCARD`;
             
-            // יצירת קישור להורדה
+            // Create download link
             const blob = new Blob([vcard], { type: 'text/vcard' });
             const url = URL.createObjectURL(blob);
             
@@ -585,7 +661,7 @@ END:VCARD`;
             URL.revokeObjectURL(url);
         }
         
-        // מריץ את פונקציית החלפת השפה כשהדף נטען
+        // Run language change function when page loads
         document.addEventListener('DOMContentLoaded', function() {
             changeLanguage('🇮🇱');
         });
