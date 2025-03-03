@@ -62,7 +62,8 @@
             flex-direction: column;
             align-items: center;
             overflow: visible;
-            height: 600px; /* גובה קבוע לכל החלק העליון */
+            height: 100vh; 
+            width: 100%;
             margin-bottom: 120px;
         }
 
@@ -238,56 +239,56 @@
         }
 
         /* כפתור 'שמרו אותי באנשי הקשר' החדש */
-.new-contact-button {
-    background-color: #0c0c24;
-    color: white;
-    border: none;
-    border-radius: 45px;
-    padding: 0.8rem 1.5rem;
-    font-size: 1.1rem;
-    font-weight: 500;
-    cursor: pointer;
-    box-shadow: 0 0 20px rgba(138, 138, 255, 0.5);
-    transition: all 0.3s ease;
-    text-decoration: none;
-    position: relative;
-    z-index: 5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin: 0 auto;
-    margin-top: -250px;
-    margin-bottom: 0rem;
-    max-width: 280px;
-}
+        .new-contact-button {
+            background-color: #0c0c24;
+            color: white;
+            border: none;
+            border-radius: 45px;
+            padding: 0.8rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(138, 138, 255, 0.5);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            position: relative;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 0 auto;
+            margin-top: -250px;
+            margin-bottom: 0rem;
+            max-width: 280px;
+        }
 
-.new-contact-button:hover {
-    box-shadow: 0 0 25px rgba(138, 138, 255, 0.7);
-    transform: translateY(-2px);
-}
+        .new-contact-button:hover {
+            box-shadow: 0 0 25px rgba(138, 138, 255, 0.7);
+            transform: translateY(-2px);
+        }
 
-.new-contact-button i {
-    font-size: 1.2rem;
-}
+        .new-contact-button i {
+            font-size: 1.2rem;
+        }
 
-* עדכונים למדיה קווריז */
-@media screen and (max-width: 768px) {
-    .new-contact-button {
-        margin-top: -180px;
-        font-size: 1rem;
-        max-width: 250px;
-    }
-}
+        * עדכונים למדיה קווריז */
+        @media screen and (max-width: 768px) {
+            .new-contact-button {
+                margin-top: -180px;
+                font-size: 1rem;
+                max-width: 250px;
+            }
+        }
 
-@media screen and (max-width: 480px) {
-    .new-contact-button {
-        font-size: 0.9rem;
-        padding: 0.7rem 1.5rem;
-        margin-top: -210px;
-        max-width: 220px;
-    }
-}
+        @media screen and (max-width: 480px) {
+            .new-contact-button {
+                font-size: 0.9rem;
+                padding: 0.7rem 1.5rem;
+                margin-top: -210px;
+                max-width: 220px;
+            }
+        }
 
       
         /* מקטעים */
@@ -438,7 +439,7 @@
 
 @media screen and (max-width: 768px) {
     .header {
-        height: 550px; /* Increased height to accommodate the new layout */
+        height: 100vh; /* Increased height to accommodate the new layout */
         margin-bottom: 50px;
     }
 
@@ -494,7 +495,7 @@
 
 @media screen and (max-width: 480px) {
     .header {
-        height: 550px; /* Increased height */
+        height: 100vh; /* Increased height */
         margin-bottom: 130px;
     }
     
