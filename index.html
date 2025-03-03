@@ -481,6 +481,7 @@
     }
     
     .header h1 {
+        
         font-size: 2rem;
     }
     
@@ -495,7 +496,7 @@
 
 @media screen and (max-width: 480px) {
     .header {
-        height: 90vh; /* Increased height */
+        height: 100vh; /* Increased height */
         margin-bottom: 130px;
     }
     
@@ -504,13 +505,17 @@
         width: 130px;
         height: 130px;
     }
+
+    .header-content {
+        bottom: 50%; /* הועבר למעלה כדי להיות קרוב יותר לתמונה */
+    }
     
     .social-icons {
         display: grid;
         grid-template-columns: repeat(3, 1fr); /* 3 columns */
         grid-gap: 8px;
         padding: 0 15px;
-        bottom: 20%;
+        bottom: 28%;
     }
     
     .icon-circle {
@@ -535,10 +540,11 @@
         font-size: 1.1rem;
     }
     
-    .cta-button {
-        font-size: 1rem;
+    .new-contact-button {
+        font-size: 0.9rem;
         padding: 0.7rem 1.5rem;
-        margin-top: -210px; /* Repositioned */
+        margin-top: -280px; /* שונה מ-210px- כדי להזיז אותו למעלה */
+        margin-bottom: 1rem;
     }
 }
     </style>
