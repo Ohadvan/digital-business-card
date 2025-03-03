@@ -55,33 +55,7 @@
             padding-bottom: 2rem;
         }
 
-        /* רקע המשכי עם תמונה ואפקט דעיכה */
-        .extended-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('images/main-image.webp');
-            background-size: cover;
-            background-position: center top;
-            z-index: -1;
-        }
-
-        /* אפקט דעיכה הדרגתית מלמעלה למטה */
-        .extended-background::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, 
-                rgba(0, 0, 0, 0.3) 0%,  /* 70% בהירות בראש */
-                rgba(0, 0, 0, 0.8) 50%, /* מתכהה באמצע */
-                rgba(0, 0, 0, 0.95) 100% /* כמעט שחור לקראת הסוף */
-            );
-        }
+              
 
         /* חלק עליון - החלק הכפול - מחולק לשניים עם תמונות נפרדות */
         .header {
@@ -90,14 +64,14 @@
             flex-direction: column;
             align-items: center;
             overflow: visible;
-            height: 350px; /* גובה קבוע לכל החלק העליון */
+            height: 600px; /* גובה קבוע לכל החלק העליון */
             margin-bottom: 120px;
         }
 
         /* החלק העליון של ההדר */
         .header-top {
             width: 100%;
-            height: 50%;
+            height: 25%;
             background-image: url('images/background.webp');
             background-size: cover;
             background-position: center;
@@ -107,10 +81,10 @@
         /* החלק התחתון של ההדר */
         .header-bottom {
             width: 100%;
-            height: 50%;
+            height: 75%;
             background-image: url('images/main-image.webp'); /* תמונה שנייה */
             background-size: cover;
-            background-position: center top;
+            background-position: center bottom;
             position: relative;
         }
 
@@ -134,7 +108,7 @@
             height: 3px;
             background: linear-gradient(to right, rgba(255, 140, 0, 0), rgba(255, 140, 0, 1), rgba(255, 140, 0, 0));
             position: absolute;
-            top: 50%;
+            top: 25%;
             left: 0;
             z-index: 9;
             box-shadow: 0 0 8px rgba(255, 140, 0, 0.7);
@@ -157,7 +131,7 @@
             position: absolute;
             z-index: 8;
             width: 100%;
-            bottom: -20px;
+            bottom: 40%;
             text-align: center;
             padding: 0 20px;
 }
@@ -165,7 +139,7 @@
         /* שינויים ללוגו כדי למקם אותו בדיוק באמצע */
         .logo {
             position: absolute;
-            top: 50%;
+            top: 25%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 180px;
@@ -255,7 +229,7 @@
             justify-content: center;
             gap: 1rem;
             position: absolute; /* שינוי מ-relative ל-absolute */
-            bottom: -100px; /* מיקום מתחתית האלמנט המכיל */
+            bottom: 25%;
             left: 0;
             right: 0;
             z-index: 10; /* וודא שהאייקונים מעל אלמנטים אחרים */
@@ -297,7 +271,7 @@
             color: white;
         }
 
-        /* כפתור קריאה לפעולה */
+       /* כפתור קריאה לפעולה */
         .cta-button {
             background-color: var(--primary-color);
             color: white;
@@ -308,15 +282,14 @@
             font-weight: 600;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            margin: 1rem 0;            
             transition: all 0.3s ease;
             text-decoration: none;
             position: relative;
             z-index: 5;
-            margin-bottom: 2rem;
             display: block;
             margin: 0 auto;
-            margin-top: 130px; /* שנה ערך זה כדי להזיז את הכפתור נמוך יותר */
+            margin-top: -250px; /* שינוי לערך שלילי כדי להזיז את הכפתור למעלה */
+            margin-bottom: 2rem;
             max-width: 200px;
         }
 
@@ -566,7 +539,7 @@
 
         <!-- חלק עליון -->
         <div class="top-wrapper">
-            <div class="extended-background"></div>
+            
             <div class="header">
                 <div class="header-top"></div>
                 <div class="header-bottom"></div>
@@ -577,7 +550,7 @@
                 </div>
                 <div class="header-content">
                     <h1>אהד ון-לואן</h1>
-                    <p>קלידן וזמר | להקת מעיינות</p>
+                    <p>ליווי מוזיקלי אנרגטי יהודי לשמחה שלכם</p>
 
                 </div>
                 <!-- אייקונים של רשתות חברתיות -->
@@ -619,6 +592,7 @@
                         <span>אינסטגרם</span>
                     </a>
                 </div>
+                
             </div>
 
             <!-- כפתור התקשרות -->
